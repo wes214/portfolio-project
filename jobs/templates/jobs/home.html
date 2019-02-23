@@ -1,12 +1,12 @@
 <!doctype html>
 <html lang="en">
   <head>
+    {% load staticfiles %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
-    <title>Album example · Bootstrap</title>
+    <title>Wes's | Portfolio</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
 
@@ -17,14 +17,14 @@
   <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="#">Wes Orr</a>
+            <a class="navbar-brand" href="/">Wes Orr | Portfolio</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
               <div class="navbar-nav ml-auto">
-                <a class="nav-item nav-link" href="#">Resume</a>
-                <a class="nav-item nav-link" href="#">Blog</a>
+                <a class="nav-item nav-link" href="{% static 'resume.pdf' %}">Resume</a>
+                <a class="nav-item nav-link" href="{% url 'allblogs' %}">Blog</a>
                 <a class="nav-item nav-link" href="https://github.com/wes214" target="_blank">Github</a>
               </div>
             </div>
@@ -33,13 +33,15 @@
 
 <main role="main">
 
-  <section class="jumbotron text-center">
+  <section class="jumbotron text-center pb-1">
     <div class="container">
-        <img src="https://i.imgur.com/BsukYXW.jpg" class="rounded-circle img-fluid" alt="Profressional Picture">
-      <p class="lead text-muted">Hello, I'm Wes Orr. I am a web developer with a passion for learning!</p>
+        <img src="{% static 'headshot.jpg' %}" height=250 width=250 class="rounded-circle img-fluid" alt="Profressional Picture">
+      <p class="lead text-muted pt-3">Hello, I'm Wes Orr. I am a web developer with a passion for creating and learning!</p>
       <p>
-        <a href="mailto:wesleyorr3@gmail.com" class="btn btn-primary my-2">Email me</a>
+        <a href="mailto:wesleyorr3@gmail.com" class="btn btn-primary mt-4 ">Email me</a>
       </p>
+      <br/>
+      <p class="text-secondary">JavaScript | HTML/CSS | Django | Angular | Java | Python</p>
     </div>
   </section>
 
@@ -51,14 +53,14 @@
         {% for job in jobs.all %}
         <div class="col-md-4">
           <div class="card mb-4 shadow-sm">
-            <img class="card-img-top" src="{{ job.image.url }}" />
+            <img class="card-img-top" height=300 width=200 src="{{ job.image.url }}" />
             <div class="card-body">
               <p class="card-text">{{ job.summary }}</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                   <a href="https://github.com/wes214" class="btn btn-sm btn-outline-secondary" target="_blank" role="button">View</a>
                 </div>
-                <small class="text-muted">9 mins</small>
+                <small class="text-muted">{% now "Y" %}</small>
               </div>
             </div>
           </div>
@@ -67,7 +69,7 @@
 </main>
 
 <footer class="text-muted">
-  <div class="container text-center">
+  <div class="container text-center fixed-bottom">
       <p>© Wes Orr {% now "Y" %}</p>
   </div>
 </footer>
